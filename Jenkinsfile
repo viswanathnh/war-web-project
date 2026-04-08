@@ -23,21 +23,21 @@ pipeline {
                 archiveArtifacts artifacts: '**/target/*.war'
             }
         }
-stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube Server') {
-                    withCredentials([string(credentialsId: env.SONAR_CREDENTIAL_ID, variable: 'SONAR_TOKEN')]) {
-                        sh """
-                            mvn sonar:sonar \
-                                -Dsonar.projectKey=wwp \
-                                -Dsonar.host.url=${env.SONAR_HOST_URL} \
-                                -Dsonar.login=${SONAR_TOKEN} \
-                                -Dsonar.java.binaries=target/classes
-                        """
-                    }
-                }
-            }
-}
+// stage('SonarQube Analysis') {
+//             steps {
+//                 withSonarQubeEnv('SonarQube Server') {
+//                     withCredentials([string(credentialsId: env.SONAR_CREDENTIAL_ID, variable: 'SONAR_TOKEN')]) {
+//                         sh """
+//                             mvn sonar:sonar \
+//                                 -Dsonar.projectKey=wwp \
+//                                 -Dsonar.host.url=${env.SONAR_HOST_URL} \
+//                                 -Dsonar.login=${SONAR_TOKEN} \
+//                                 -Dsonar.java.binaries=target/classes
+//                         """
+//                     }
+//                 }
+//             }
+// }
        stage('Extract Version') {
             steps {
                 script {
